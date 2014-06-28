@@ -6,7 +6,12 @@
   "dependencies": {
     "xtend": "^3.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "checksum-buffer": "^0.1.1",
+    "duplexer2": "0.0.2",
+    "pipe-segment-filter": "^0.1.1",
+    "through2": "^0.5.1"
+  },
   "scripts": {
     "test": "node try.js"
   },
