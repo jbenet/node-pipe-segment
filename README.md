@@ -93,8 +93,8 @@ function integrityTransportSegment(cksumFunc) {
   check.output.pipe(unwrap)
 
   // make duplex interfaces for each "side" of the streams
-  var side1 = duplexer2(unwrap, wrap) // read from unwrap, write to wrap
-  var side2 = duplexer2(wrap, check.input)
+  var side1 = duplexer2(wrap, unwrap) // read from unwrap, write to wrap
+  var side2 = duplexer2(check.input, wrap)
   // read from wrap, write to check.input
 
   return segment({
