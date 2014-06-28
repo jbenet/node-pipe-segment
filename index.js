@@ -28,5 +28,6 @@ function Segment(streams) {
   }
 
   for (var name in streams)
-    streams[name].on('error', errcb(name))
+    if (name != 'error')
+      streams[name].on('error', errcb(name))
 }
