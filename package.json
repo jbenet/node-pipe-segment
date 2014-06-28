@@ -1,0 +1,27 @@
+{
+  "name": "pipe-segment",
+  "version": "0.1.0",
+  "description": "pipe segment",
+  "main": "index.js",
+  "dependencies": {
+    "xtend": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node try.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jbenet/node-pipe-segment.git"
+  },
+  "keywords": [
+    "pipe",
+    "segment"
+  ],
+  "author": "Juan Benet <juan@benet.ai> (http://juan.benet.ai/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jbenet/node-pipe-segment/issues"
+  },
+  "homepage": "https://github.com/jbenet/node-pipe-segment"
+}

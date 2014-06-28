@@ -35,7 +35,6 @@ function cksumWrap(func) {
 And one that unwraps a `checksum-buffer`. This is just a simple transform stream again.
 
 ```js
-var multihash = require('multihashes')
 var CkBuffer = require('checksum-buffer')
 var through2 = require('through2')
 
@@ -52,6 +51,7 @@ Now, let's make a _segment_ that checks the checksum on a `checksum-buffer`. A s
 
 ```js
 var CkBuffer = require('checksum-buffer')
+var multihash = require('multihashes')
 var filterSegment = require('pipe-segment-filter')
 // filterSegment is like a T pipe segment.
 // it returns a segment object, with three streams:
