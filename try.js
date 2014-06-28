@@ -81,7 +81,7 @@ function logLabel(label) {
 
 function corrupt(p) {
   return through2.obj(function(item, enc, next) {
-    if (Math.random() < (p || 0.1))
+    if (Math.random() < p)
       item[item.length - 1] = 0x00
     this.push(item)
     next()
@@ -89,6 +89,7 @@ function corrupt(p) {
 }
 
 var its = integrityTransportSegment('sha1')
+var corrp = 0.1
 
 var ll1 = logLabel('raw outgoing')
 var ll2 = logLabel('cksum output')
@@ -96,7 +97,9 @@ var ll3 = logLabel('raw incoming')
 var ll4 = logLabel('filtered')
 
 process.stdin.pipe(ll1).pipe(its.raw).pipe(ll3)
-its.checksum.pipe(ll2).pipe(corrupt(0.1)).pipe(its.checksum)
+its.checksum.pipe(ll2).pipe(corrupt(corrp)).pipe(its.checksum)
 its.filtered.pipe(ll4)
 
 its.error.pipe(logLabel('error')).pipe(process.stderr)
+console.log('Integrity Transport. Corrupting ' + corrp)
+console.log('Try entering some text:')

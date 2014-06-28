@@ -1,5 +1,6 @@
 var extend = require('xtend')
 var Readable = require('stream').Readable
+var noop = function() {}
 
 module.exports = Segment
 
@@ -7,8 +8,13 @@ function Segment(streams) {
   if (!(this instanceof Segment))
     return new Segment(streams)
 
+  // create errors stream. all Segments have it.
+  // all segment pieces output errors through it
+  var error = Readable({objectMode: true, highWaterMark: 16})
+  error._read = noop
+
   // defaults + copy object
-  var defaults = { error: Readable({objectMode: true}) }
+  var defaults = { error: error }
   streams = extend(defaults, streams)
 
   // patch streams into object for convenience
@@ -22,7 +28,7 @@ function Segment(streams) {
   var self = this
   function errcb(label) {
     return function(err) {
-      self.error.push({ error: err, label: label})
+      error.push({ error: err, label: label})
       // perhaps should end all streams here??
     }
   }
