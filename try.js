@@ -96,7 +96,7 @@ var ll2 = logLabel('cksum output')
 var ll3 = logLabel('raw incoming')
 var ll4 = logLabel('filtered')
 
-process.stdin.pipe(ll1).pipe(its.raw).pipe(ll3)
+process.stdin.pipe(ll1).pipe(its.raw).pipe(ll3).pipe(process.stdout)
 its.checksum.pipe(ll2).pipe(corrupt(corrp)).pipe(its.checksum)
 its.filtered.pipe(ll4)
 
