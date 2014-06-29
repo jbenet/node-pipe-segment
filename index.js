@@ -34,6 +34,6 @@ function Segment(streams) {
   }
 
   for (var name in streams)
-    if (name != 'error')
+    if (name != 'error' && typeof(streams[name].on) == 'function')
       streams[name].on('error', errcb(name))
 }
